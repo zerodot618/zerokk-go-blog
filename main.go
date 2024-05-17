@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/zerodot618/zerokk-go-blog/models/responses"
 )
 
 type IndexData struct {
@@ -28,8 +30,10 @@ func index(w http.ResponseWriter, r *http.Request) {
 	personal := path + "/resources/views/layout/personal.html"
 	post := path + "/resources/views/layout/post-list.html"
 	pagination := path + "/resources/views/layout/pagination.html"
-	t, _ = t.ParseFiles(index, home, header, footer, personal, post, pagination )
-	t.Execute(w, indexData)
+	t, _ = t.ParseFiles(index, home, header, footer, personal, post, pagination)
+
+	var homeRes = &responses.HomeRes{}
+	t.Execute(w, homeRes)
 }
 
 func main() {
