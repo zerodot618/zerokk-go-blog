@@ -4,8 +4,8 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"os"
 
+	"github.com/zerodot618/zerokk-go-blog/config"
 	"github.com/zerodot618/zerokk-go-blog/models/responses"
 )
 
@@ -15,14 +15,10 @@ type IndexData struct {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	var indexData IndexData
-	indexData.Title = "Hello World"
-	indexData.Desc = "Hello World Desc"
 
 	t := template.New("index.html")
 	// 拿到html文件路径
-	path, _ := os.Getwd()
+	path := config.Cfg.System.CurrentDir
 	index := path + "/resources/views/index.html"
 	home := path + "/resources/views/home.html"
 	header := path + "/resources/views/layout/header.html"
