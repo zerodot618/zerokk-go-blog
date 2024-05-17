@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"html/template"
 	"log"
 	"net/http"
@@ -18,20 +17,18 @@ func index(w http.ResponseWriter, r *http.Request) {
 	var indexData IndexData
 	indexData.Title = "Hello World"
 	indexData.Desc = "Hello World Desc"
-	jsonStr, _ := json.Marshal(indexData)
-	w.Write(jsonStr)
-}
-
-func indexHtml(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json; charset=utf-8")
-	var indexData IndexData
-	indexData.Title = "Hello World"
-	indexData.Desc = "Hello World Desc"
 
 	t := template.New("index.html")
 	// 拿到html文件路径
 	path, _ := os.Getwd()
-	t, _ = t.ParseFiles(path + "/resources/views/index.html")
+	index := path + "/resources/views/index.html"
+	home := path + "/resources/views/home.html"
+	header := path + "/resources/views/layout/header.html"
+	footer := path + "/resources/views/layout/footer.html"
+	personal := path + "/resources/views/layout/personal.html"
+	post := path + "/resources/views/layout/post-list.html"
+	pagination := path + "/resources/views/layout/pagination.html"
+	t, _ = t.ParseFiles(index, home, header, footer, personal, post, pagination )
 	t.Execute(w, indexData)
 }
 
@@ -41,7 +38,6 @@ func main() {
 	}
 
 	http.HandleFunc("/", index)
-	http.HandleFunc("/index.html", indexHtml)
 
 	if err := server.ListenAndServe(); err != nil {
 		log.Println(err)
