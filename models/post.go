@@ -30,6 +30,6 @@ type PostMore struct {
 	UserName     string        `json:"userName"`     // 文章作者名称
 	ViewCount    int           `json:"viewCount"`    // 文章浏览次数
 	Type         int           `json:"type"`         // 文章类型 0:普通 1:自定义
-	CreatedAt    time.Time     `json:"createdAt"`    // 文章创建时间
-	UpdatedAt    time.Time     `json:"updatedAt"`    // 文章更新时间
+	CreatedAt    string        `json:"createdAt"`    // 文章创建时间
+	UpdatedAt    string        `json:"updatedAt"`    // 文章更新时间
 }
