@@ -26,7 +26,7 @@
           {{range $index,$elem := $value}}
           <li class="pige-label">
           <span class="iconfont icon-riqi"
-          >&nbsp;{{dateDay $elem.CreateAt}}</span
+          >&nbsp;{{dateDay $elem.CreatedAt}}</span
           >
             <a href="/p/{{$elem.Pid}}.html">{{$elem.Title}}</a>
           </li>

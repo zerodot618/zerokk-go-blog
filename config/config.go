@@ -42,7 +42,7 @@ type SystemConfig struct {
 	AppName         string
 	Version         float32
 	CurrentDir      string
-	CndURL          string
+	CdnURL          string
 	QiniuAccessKey  string
 	QiniuSecretKey  string
 	Valine          bool

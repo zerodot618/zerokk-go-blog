@@ -6,12 +6,25 @@ import (
 )
 
 type SearchRes struct {
-	Pid   int    `orm:"pid" json:"pid"` // 文章ID
-	Title string `orm:"title" json:"title"`
+	Pid   int    `json:"pid"` // 文章ID
+	Title string `json:"title"`
 }
 
 type PostRes struct {
 	config.Viewer
 	config.SystemConfig
 	Article models.PostMore
+}
+
+type WritingRes struct {
+	Title     string
+	CdnURL    string
+	Categorys []models.Category
+}
+
+type PigeonholeRes struct {
+	config.Viewer
+	config.SystemConfig
+	Categorys []models.Category
+	Lines     map[string][]models.Post
 }
